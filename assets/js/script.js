@@ -17,12 +17,18 @@ var quizQuestions = [
     },
     {
         question:"2. What number is two?",
-        choices: ["2", "4", "5", "6"],
+        choiceOne: "1",
+        choiceTwo: "2",
+        choiceThree: "3",
+        choiceFour: "4",
         answer: "2"
     },
     {
         question:"3. What number is three?",
-        choices: ["7", "8", "9", "10"],
+        choiceOne: "1",
+        choiceTwo: "2",
+        choiceThree: "3",
+        choiceFour: "4",
         answer: "3",
     }
 ];
@@ -38,13 +44,25 @@ for (let i = 0; i < quizQuestions.length; i++) {
 
     //write the first question in h1 of questionsScreen
     var questionName = document.createElement('h1');
-    var questionList = document.createElement('ul');
-    var questionListChoices = document.createElement('li');
-    questionListChoices.textContent = (quizQuestions[i].choices[i]);
     questionName.textContent = (quizQuestions[i].question);
-    questionList.appendChild(questionListChoices);
+    //append questionName to questionsScreen
     questionsScreen.appendChild(questionName);
+
+    //write the first choice in questionsScreen
+    var questionList = document.createElement('ul');
+
+    //Choice #1
+    var questionListChoices = document.createElement('li');
+    questionListChoices.textContent = (quizQuestions[i].choiceOne);
+    questionList.appendChild(questionListChoices);
+    //Choice #2
+    
+    questionListChoices.textContent = (quizQuestions[i].choiceTwo);
+    
+    
+   //append questionList to questionsScreen
     questionsScreen.appendChild(questionList);
+   
     
 
     //Compare answers
