@@ -17,26 +17,35 @@ var quizQuestions = [
     },
     {
         question:"2. What number is two?",
-        choices: ["1", "2", "3", "4"],
+        choices: ["2", "4", "5", "6"],
         answer: "2"
     },
     {
         question:"3. What number is three?",
-        choices: ["1", "2", "3", "4"],
+        choices: ["7", "8", "9", "10"],
         answer: "3",
     }
 ];
-currentQuestion = 0;
+
 //function to start game
 var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
     // Loop over every question object
-for (var i = 0; i < questions.length; i++) {
+for (let i = 0; i < quizQuestions.length; i++) {
     //Display current question to user
-   var questionName = document.createElement('h1');
-   questionName.textContent = quizQuestions.question;
-   questionsScreen.appendChild(questionName);
+    currentQuestion = (quizQuestions[i].question);
+
+    //write the first question in h1 of questionsScreen
+    var questionName = document.createElement('h1');
+    var questionList = document.createElement('ul');
+    var questionListChoices = document.createElement('li');
+    questionListChoices.textContent = (quizQuestions[i].choices[i]);
+    questionName.textContent = (quizQuestions[i].question);
+    questionList.appendChild(questionListChoices);
+    questionsScreen.appendChild(questionName);
+    questionsScreen.appendChild(questionList);
+    
 
     //Compare answers
     // if (
@@ -60,11 +69,6 @@ function endQuiz () {
         } 
     },1000);
 }
-// var question = quizQuestions[currentQuestion];
-// var questionName= document.createElement('h1');
-// questionName.textContent= question.question;
-// questionsBox.appendChild(questionName);
-
 
 //  //show total at the end
 // alert("You got " + time)
