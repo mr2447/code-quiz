@@ -45,18 +45,15 @@ function showQuestion () {
 
     //Display current question and choices 
     var currentQuestion = (quizQuestion[questionIndex].question);
-    var currentChoices = (quizQuestion[questionIndex].choices);
+    var currentChoice = (quizQuestion[questionIndex].choices);
     
     //write the first question in h1
     questionTitle.textContent = currentQuestion;
     //write the first choice in button  
-
-        for (var i = 0; i < currentChoices.length; i++) {
-            console.log(currentChoices[i])
-            var listQuestion = questionChoices.textContent = currentChoices[i];
-            questionChoices.appendChild(listQuestion);
-           
-        }
+    currentChoice.forEach(function (choices, i) {
+        questionChoices.textContent = currentChoice
+    });
+    
         questionChoices.addEventListener("click", verifyResponse)
 };
 
