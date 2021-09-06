@@ -49,7 +49,7 @@ function showQuestion () {
         currentQuestion = (quizQuestions[questionIndex].question);
         currentChoices = (quizQuestions[questionIndex].choices);
     
-        //write the first question in h1 of questionsScreen
+        //write the first question in h1 of questionsScreen .textContent(currentQuestion) after this step
         var questionName = document.createElement('h1');
         questionName.textContent = (quizQuestions[questionIndex].question);
         //append questionName to questionsScreen
