@@ -4,13 +4,16 @@ var questionsScreen = document.querySelector("#questions");
 var endScreen = document.querySelector("#end-screen");
 var feedback = document.querySelector ("#feedback");
 var timer = document.querySelector("#timer");
+var questionTitle = document.querySelector("#question-title");
+var questionChoices = document.querySelector("#question-list");
+
 var questionIndex = 0
 //start game with a score: time of 24
 var time = 50;
 //declare intervalId as a variable to use to call time 
 var intervalId;
 //The array of questions for the game.
-var quizQuestions = [
+var quizQuestion = [
     {
         question: "1. What number is one?",
         choices: ["A", "2", "3", "4"],
@@ -40,31 +43,22 @@ var startQuiz = function() {
 //function to  showQuestions
 function showQuestion () {
 
-    // variable to store the HTML output, which includes the questions and answer choices 
-    var output = [];
-
-    // for each question...
+    //Display current question and choices 
+    var currentQuestion = (quizQuestion[questionIndex].question);
+    var currentChoices = (quizQuestion[questionIndex].choices);
     
-        //Display current question to user
-        currentQuestion = (quizQuestions[questionIndex].question);
-        currentChoices = (quizQuestions[questionIndex].choices);
-    
-        //write the first question in h1 of questionsScreen .textContent(currentQuestion) after this step
-        var questionName = document.createElement('h1');
-        questionName.textContent = (quizQuestions[questionIndex].question);
-        //append questionName to questionsScreen
-        questionsScreen.appendChild(questionName);
+    //write the first question in h1
+    questionTitle.textContent = currentQuestion;
+    //write the first choice in button  
 
-        var questionList = document.createElement('ul');
         for (var i = 0; i < currentChoices.length; i++) {
             console.log(currentChoices[i])
-            var questionListChoices = document.createElement('li');
-            questionListChoices.textContent = currentChoices[i];
-            questionList.appendChild(questionListChoices);
+            var listQuestion = questionChoices.textContent = currentChoices[i];
+            questionChoices.appendChild(listQuestion);
+           
         }
-        questionsScreen.appendChild(questionList);
-        questionsScreen.addEventListener("click", verifyResponse)
-    };
+        questionChoices.addEventListener("click", verifyResponse)
+};
 
 function verifyResponse () {
     questionIndex++;
