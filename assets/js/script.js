@@ -10,6 +10,9 @@ var endScreen = document.querySelector("#end-screen");
 var submitBtn = document.querySelector("#submit-btn");
 var feedBack = document.querySelector("#feedback");
 var form = document.querySelector("#task-form");
+var goBack = document.querySelector("#go-back-btn");
+var clearScore = document.querySelector("#clear-score-btn");
+
 
 //start game with a score: time of 24
 var time = 50;
@@ -74,14 +77,12 @@ function showChoices () {
 };
 
 function verifyResponse () {
+
     questionIndex++;
     if (questionIndex < quizQuestion.length) {
-        
-        
         choicesIndex = 0;
         showQuestion();
         questionList.innerHTML = ""
-
         for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
         showChoices();
         };
@@ -109,12 +110,22 @@ function showEndScreen () {
 
 };
 
-function showFeedBack () {
-    
+function showFeedBack (event) {
+    event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-}
+    goBack.addEventListener("click", showStartScreen);
+    clearScore.addEventListener("click", alertScore)
+};
 
+function showStartScreen () {
+    feedBack.setAttribute("class", "hide");
+    startScreen.removeAttribute("class", "hide");
+};
+
+function alertScore () {
+    window.alert("your score has been cleared!");
+}
 
 
 
