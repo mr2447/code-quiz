@@ -39,7 +39,7 @@ var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
     showQuestion();
-    showChoices ();
+    quizQuestion.forEach(showChoices);
 }
 //function to  showQuestions
 function showQuestion () {
@@ -62,7 +62,7 @@ function showChoices () {
     btn.innerHTML = questionChoice;
     + "<br>";
     document.questionList.appendChild(btn);
-}
+};
 
 
 function verifyResponse () {
