@@ -61,6 +61,7 @@ function showQuestion () {
     var btn = document.createElement ("button");
     btn.setAttribute("class", "button");
     btn.innerHTML = questionChoice;
+    + "<br>";
     console.log(btn);
     document.questionList.appendChild(btn);
 
