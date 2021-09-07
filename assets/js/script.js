@@ -69,12 +69,11 @@ function showChoices () {
     choicesIndex++;
     btn.addEventListener("click", verifyResponse);
 };
-btn.style.display = "block";
 
 function verifyResponse () {
     questionIndex++;
     showQuestion();
-    btn.style.display = "none";
+    questionList.innerHTML = ""
     showChoices ();
     }
     
