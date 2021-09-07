@@ -55,7 +55,7 @@ function showQuestion () {
 // show choice function
 
 function showChoices () {
-    for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
+   
     var currentChoice = (quizQuestion[questionIndex].choices[choicesIndex]);
     var questionChoice = currentChoice;
     var btn = document.createElement ("button");
@@ -63,7 +63,7 @@ function showChoices () {
     btn.innerHTML = questionChoice;
     + "<br>";
     document.questionList.appendChild(btn);
-    };
+    choicesIndex++;
 };
 
 
