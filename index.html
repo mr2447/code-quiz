@@ -25,15 +25,24 @@
         <div id="end-screen" class="hide">
             <h1>All done!</h1>
             <p>Your final score is <span></span></p>
-            <form>
+            <form id = "task-form">
                 <label for="name">Enter initials</label>
                 <input type="text" placeholder="Your initials" name="name" id="name" class="form-input"/>
-                <button type="submit">
+                <button type="submit" class = "submit-btn">
                     Submit
                 </button>
             </form>
         </div>
-        <div id="feedback" class="feedback hide"></div>
+        <div id="feedback" class="hide">
+            <h2>Highscores</h2>
+            <div id = "score list">hello</div>
+            <button class = "go-back-btn">
+                Go Back
+            </button>
+            <button class = "clear-score-btn">
+                Clear Highscorese
+            </button>
+        </div>
     </div>
     <script src="./assets/js/script.js"></script>
     <!--<script src="./assets/js/questions.js"></script>-->
