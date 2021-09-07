@@ -60,9 +60,9 @@ function showQuestion () {
     var questionChoice = quizQuestion[questionIndex].choices[1];
     var btn = document.createElement ("button");
     btn.setAttribute("class", "button");
+    btn.innerHTML = questionChoice;
     console.log(btn);
-    questionList.appendChild(btn);
-    questionList.getElementById("button").innerHTML = questionChoice;
+    document.questionList.appendChild(btn);
 
 
 //document.getElementById("demo").innerHTML = "Paragraph changed!";
