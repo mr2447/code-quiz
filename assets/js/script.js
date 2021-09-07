@@ -6,6 +6,7 @@ var feedback = document.querySelector ("#feedback");
 var timer = document.querySelector("#timer");
 var questionTitle = document.querySelector("#question-title");
 var questionList = document.querySelector("#question-list");
+var endScreen = document.querySelector("#end-screen");
 
 
 //start game with a score: time of 24
@@ -38,11 +39,11 @@ var choicesIndex = 0
 var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
-    showQuestion();
-    for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
+        
+        showQuestion();
+        for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
         showChoices();
-    };
-
+        };  
     
 }
 //function to  showQuestions
@@ -71,11 +72,27 @@ function showChoices () {
 };
 
 function verifyResponse () {
-    questionIndex++;
-    showQuestion();
-    questionList.innerHTML = ""
-    showChoices ();
+    if (questionIndex < quizQuestion.length) {
+        console.log (questionIndex);
+        questionIndex++;
+        choicesIndex = 0;
+        showQuestion();
+        questionList.innerHTML = ""
+
+        for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
+        showChoices();
+        };
+    } else {
+        showEndScreen;
     }
+}
+
+function showEndScreen () {
+    questionsScreen.setAttribute("class", "hide");
+    endScreen.removeAttribute("class", "hide");
+
+
+}
     
 //function to stop timer
 function endQuiz () {
