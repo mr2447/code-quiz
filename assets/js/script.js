@@ -6,8 +6,9 @@ var feedback = document.querySelector ("#feedback");
 var timer = document.querySelector("#timer");
 var questionTitle = document.querySelector("#question-title");
 var questionChoices = document.querySelector("#question-list");
+var questionList = document.querySelector("question-list");
 
-var questionIndex = 0
+
 //start game with a score: time of 24
 var time = 50;
 //declare intervalId as a variable to use to call time 
@@ -30,15 +31,13 @@ var quizQuestion = [
         answer: "3",
     }
 ];
-
+//cycle through the questions starting at 0
 var questionIndex = 0
 //function to start game
 var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
     showQuestion();
-    
-
 }
 //function to  showQuestions
 function showQuestion () {
@@ -47,15 +46,26 @@ function showQuestion () {
     var currentQuestion = (quizQuestion[questionIndex].question);
     var currentChoice = (quizQuestion[questionIndex].choices);
     
-    //write the first question in h1
+    
+    //write the question in h1
     questionTitle.textContent = currentQuestion;
     //write the first choice in button  
-    currentChoice.forEach(function (choices, i) {
-        questionChoices.textContent = currentChoice
-    });
-    
-        questionChoices.addEventListener("click", verifyResponse)
+   
+    questionTitle.addEventListener("click", verifyResponse)
 };
+
+// show choice function
+
+//function showChoices () {
+    var questionChoice = quizQuestion[questionIndex].choices[1];
+    var btn = document.createElement ("button");
+    btn.setAttribute("class", "button");
+    console.log(btn);
+    questionList.appendChild(btn);
+    questionList.getElementById("button").innerHTML = questionChoice;
+
+
+//document.getElementById("demo").innerHTML = "Paragraph changed!";
 
 function verifyResponse () {
     questionIndex++;
