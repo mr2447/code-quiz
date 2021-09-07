@@ -5,8 +5,7 @@ var endScreen = document.querySelector("#end-screen");
 var feedback = document.querySelector ("#feedback");
 var timer = document.querySelector("#timer");
 var questionTitle = document.querySelector("#question-title");
-var questionChoices = document.querySelector("#question-list");
-var questionList = document.querySelector("question-list");
+var questionList = document.querySelector("#question-list");
 
 
 //start game with a score: time of 24
@@ -39,7 +38,11 @@ var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
     showQuestion();
-    quizQuestion.forEach(showChoices);
+    for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
+        showChoices();
+    };
+    //quizQuestion.forEach(showChoices);
+    
 }
 //function to  showQuestions
 function showQuestion () {
@@ -49,7 +52,7 @@ function showQuestion () {
     
     //write the question in h1
     questionTitle.textContent = currentQuestion;
-    questionTitle.addEventListener("click", verifyResponse);
+    
 };
 
 // show choice function
@@ -57,20 +60,20 @@ function showQuestion () {
 function showChoices () {
    
     var currentChoice = (quizQuestion[questionIndex].choices[choicesIndex]);
-    var questionChoice = currentChoice;
     var btn = document.createElement ("button");
     btn.setAttribute("class", "button");
-    btn.innerHTML = questionChoice;
+    btn.innerHTML = currentChoice;
     + "<br>";
-    document.questionList.appendChild(btn);
+    questionList.appendChild(btn);
     choicesIndex++;
+    btn.addEventListener("click", verifyResponse);
 };
 
 
 function verifyResponse () {
     questionIndex++;
     showQuestion();
-
+    showChoices ();
     }
     
 //function to stop timer
