@@ -33,40 +33,37 @@ var quizQuestion = [
 ];
 //cycle through the questions starting at 0
 var questionIndex = 0
+var choicesIndex = 0
 //function to start game
 var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
     showQuestion();
+    showChoices ();
 }
 //function to  showQuestions
 function showQuestion () {
 
     //Display current question and choices 
     var currentQuestion = (quizQuestion[questionIndex].question);
-    var currentChoice = (quizQuestion[questionIndex].choices);
-    
     
     //write the question in h1
     questionTitle.textContent = currentQuestion;
-    //write the first choice in button  
-   
     questionTitle.addEventListener("click", verifyResponse)
 };
 
 // show choice function
 
-//function showChoices () {
-    var questionChoice = quizQuestion[questionIndex].choices[1];
+function showChoices () {
+    var currentChoice = (quizQuestion[questionIndex].choices[choicesIndex]);
+    var questionChoice = currentChoice;
     var btn = document.createElement ("button");
     btn.setAttribute("class", "button");
     btn.innerHTML = questionChoice;
     + "<br>";
-    console.log(btn);
     document.questionList.appendChild(btn);
+}
 
-
-//document.getElementById("demo").innerHTML = "Paragraph changed!";
 
 function verifyResponse () {
     questionIndex++;
