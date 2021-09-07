@@ -15,24 +15,25 @@ var intervalId;
 //The array of questions for the game.
 var quizQuestion = [
     {
-        question: "1. What number is one?",
-        choices: ["A", "2", "3", "4"],
-        answer: "1",
+        question: "1. What letter is A?",
+        choices: ["A", "B", "C", "D"],
+        answer: "A",
     },
     {
         question:"2. What number is two?",
-        choices: ["6", "2", "3", "4"],
+        choices: ["1", "2", "3", "4"],
         answer: "2"
     },
     {
-        question:"3. What number is three?",
-        choices: ["7", "2", "3", "4"],
-        answer: "3",
+        question:"3. What number is eight?",
+        choices: ["5", "6", "7", "8"],
+        answer: "8",
     }
 ];
 //cycle through the questions starting at 0
 var questionIndex = 0
 var choicesIndex = 0
+
 //function to start game
 var startQuiz = function() {
     startScreen.setAttribute("class", "hide");
@@ -41,7 +42,7 @@ var startQuiz = function() {
     for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
         showChoices();
     };
-    //quizQuestion.forEach(showChoices);
+
     
 }
 //function to  showQuestions
@@ -68,11 +69,12 @@ function showChoices () {
     choicesIndex++;
     btn.addEventListener("click", verifyResponse);
 };
-
+btn.style.display = "block";
 
 function verifyResponse () {
     questionIndex++;
     showQuestion();
+    btn.style.display = "none";
     showChoices ();
     }
     
