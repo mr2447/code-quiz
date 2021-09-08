@@ -42,6 +42,7 @@ var choicesIndex = 0
 
 //function to start game
 var startQuiz = function() {
+    var questionIndex = 0
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
         
@@ -76,8 +77,18 @@ function showChoices () {
     btn.addEventListener("click", verifyResponse);
 };
 
-function verifyResponse () {
-
+function verifyResponse (event) {
+    //store chosenChoice
+    event.target.innerHTML
+    var chosenChoice = JSON.stringify(event.target.innerHTML);
+//console.log(chosenChoice);
+    if (chosenChoice = quizQuestion.answer) {
+        console.log("correct!")
+    } else {
+        console.log("wrong!");
+    }
+ 
+    //dispaly
     questionIndex++;
     if (questionIndex < quizQuestion.length) {
         choicesIndex = 0;
