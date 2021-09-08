@@ -17,7 +17,6 @@ var clearScore = document.querySelector("#clear-score-btn");
 //start game with a score: time of 24
 var time = 50;
 //declare intervalId as a variable to use to call time 
-var intervalId;
 //The array of questions for the game.
 var quizQuestion = [
     {
@@ -42,6 +41,7 @@ var choicesIndex = 0
 
 //function to start game
 var startQuiz = function() {
+    startTimer()
     var questionIndex = 0
     startScreen.setAttribute("class", "hide");
     questionsScreen.removeAttribute("class", "hide");
@@ -50,8 +50,8 @@ var startQuiz = function() {
     for (var i = 0; i < quizQuestion[questionIndex].choices.length; i++) {
     showChoices();
     };  
-    
 }
+console.log(time)
 //function to  showQuestions
 function showQuestion () {
 
@@ -80,9 +80,9 @@ function showChoices () {
 function verifyResponse (event) {
     //store chosenChoice
     event.target.innerHTML
-    var chosenChoice = JSON.stringify(event.target.innerHTML);
-//console.log(chosenChoice);
-    if (chosenChoice = quizQuestion.answer) {
+    var chosenChoice = event.target.innerHTML;
+
+    if (chosenChoice === quizQuestion[questionIndex].answer) {
         console.log("correct!")
     } else {
         console.log("wrong!");
@@ -106,13 +106,18 @@ function verifyResponse (event) {
 function endQuiz () {
     clearInterval(intervalId);
 }
-intervalId = setInterval(function(){
-    time --;
-    timer.textContent = time
-    if (time <= 0) {
+function startTimer () {
+    intervalId = setInterval(function(){
+    
+        time --;
+        timer.textContent = time
+        if (time <= 0) {
         endQuiz();
-    } 
-},1000);
+        } 
+    },1000);
+    
+};
+
 
 function showEndScreen () {
     questionsScreen.setAttribute("class", "hide");
