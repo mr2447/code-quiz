@@ -40,7 +40,7 @@ var quizQuestion = [
 ];
 
 var storedInformation = JSON.parse(localStorage.getItem("ScoreArray") )|| [];
-
+var  player = []
 
 
 //cycle through the questions starting at 0
@@ -126,7 +126,6 @@ function startTimer () {
         console.log(time);
         if (time <= 0) {
         endQuiz();
-        minusTime();
         }  
     },1000);
 };
@@ -148,9 +147,14 @@ form.addEventListener("submit", function (event) {
 function saveInitial (event) {
     event.preventDefault();
     var scoreObject = {"score": time, "initials": initial.value}
+    
+    // storedInformation = JSON.parse(localStorage.getItem("ScoresArray"))
+    // console.log("storage:", storedInformation)
 
     storedInformation.push(scoreObject);
+
     localStorage.setItem("ScoresArray", JSON.stringify(storedInformation));
+
 
 };
   
@@ -160,10 +164,10 @@ function showFeedBack (event) {
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-    //var playerInformations = JASON.parse(localStorage.getItem("ScoresArray"));
     var initial = storedInformation[0].initials;
-    var time = storedInformation[0]. score;
+    var time = storedInformation[0].score;
    scoreList.textContent = initial + " - " + time;
+   
    
     goBack.addEventListener("click", playAgain);
     clearScore.addEventListener("click", alertScore);
@@ -173,7 +177,14 @@ function showFeedBack (event) {
 function playAgain () {
 
     showStartScreen();
-    console.log(quizQuestion[questionIndex])
+    questionIndex = 0;
+    choicesIndex = 0;
+    questionList.textContent = "";
+    console.log(quizQuestion[questionIndex].choices);
+    console.log(questionIndex);
+    console.log(choicesIndex);
+    time = 50;
+
 
 }
 
@@ -190,6 +201,4 @@ function alertScore () {
 
 
 
-//  //show total at the end
-// alert("You got " + time)
 startBtn.addEventListener("click", startQuiz);
