@@ -14,6 +14,7 @@ var goBack = document.querySelector("#go-back-btn");
 var clearScore = document.querySelector("#clear-score-btn");
 var finalScore = document.querySelector("#final-score");
 var initialInput = document.querySelector("#initial");
+var scoreList = document.querySelector("#score-list")
 
 //start game with a score: time of 24
 var time = 50;
@@ -131,26 +132,33 @@ function showEndScreen () {
     endScreen.removeAttribute("class", "hide");
     
     finalScore.innerHTML = time;
-    localStorage.setItem("store-final-score", time);
+    var checkScore = localStorage.getItem("store-final-score")
     
+    if (checkScore < time || checkScore === null) {
+        localStorage.setItem("store-final-score", time);
+    } 
 };
 form.addEventListener("submit", function (event) {
-    event.preventDefault()
-    saveInitial();
-    showFeedBack();
+    saveInitial(event);
+    showFeedBack(event);
 });
 
 function saveInitial (event) {
     event.preventDefault();
     var storeInitial = initial.value;
-    localStorage.setItem("store-inital", storeInitial);
+    localStorage.setItem("store-initial", storeInitial);
+    console.log(storeInitial)
 };
 
 function showFeedBack (event) {
+    console.log("showing feedBack");
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-    //finalScore.
+    var initial = localStorage.getItem("store-initial");
+    var score = localStorage.getItem("store-final-score");
+    scoreList.textContent = initial + " - " + score;
+
     goBack.addEventListener("click", showStartScreen);
     clearScore.addEventListener("click", alertScore);
 
@@ -162,7 +170,9 @@ function showStartScreen () {
 };
 
 function alertScore () {
-    window.alert("your score has been cleared!");
+    localStorage.removeItem("store-initial");
+    localStorage.removeItem("store-final-score");
+    scoreList.textContent = "";
 }
 
 
