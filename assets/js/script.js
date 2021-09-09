@@ -16,6 +16,7 @@ var clearScore = document.querySelector("#clear-score-btn");
 
 //start game with a score: time of 24
 var time = 50;
+
 //declare intervalId as a variable to use to call time 
 //The array of questions for the game.
 var quizQuestion = [
@@ -51,7 +52,7 @@ var startQuiz = function() {
     showChoices();
     };  
 }
-console.log(time)
+
 //function to  showQuestions
 function showQuestion () {
 
@@ -86,6 +87,7 @@ function verifyResponse (event) {
         console.log("correct!")
     } else {
         console.log("wrong!");
+        
     }
  
     //dispaly
@@ -99,6 +101,7 @@ function verifyResponse (event) {
         };
     } else {
         endQuiz()
+        console.log(time);
         showEndScreen();
     }
 } 
@@ -106,16 +109,17 @@ function verifyResponse (event) {
 function endQuiz () {
     clearInterval(intervalId);
 }
+
 function startTimer () {
     intervalId = setInterval(function(){
-    
         time --;
-        timer.textContent = time
+        timer.textContent = time;
+        console.log(time);
+        
         if (time <= 0) {
         endQuiz();
-        } 
+        }  
     },1000);
-    
 };
 
 
