@@ -39,7 +39,7 @@ var quizQuestion = [
     }
 ];
 
-var storedInformation = [];
+var storedInformation = JSON.parse(localStorage.getItem("ScoreArray") )|| [];
 
 
 
@@ -138,10 +138,7 @@ function showEndScreen () {
     
     finalScore.innerHTML = time;
     var checkScore = localStorage.getItem("store-final-score")
-    
-    // if (checkScore < time || checkScore === null) {
-    //     localStorage.setItem("store-final-score", time);
-    // } 
+
 };
 form.addEventListener("submit", function (event) {
     saveInitial(event);
@@ -150,18 +147,12 @@ form.addEventListener("submit", function (event) {
 
 function saveInitial (event) {
     event.preventDefault();
-    localStorage.setItem("store-objects", storeObjects[0]);
-    
-};
+    var scoreObject = {"score": time, "initials": initial.value}
 
-for (var i = 0; i < storedInformation.length; i++  ) {
-var storeObjects = [
-    {
-        time : time,
-        initial: initial.value,
-    }
-];
-}
+    storedInformation.push(scoreObject);
+    localStorage.setItem("ScoresArray", JSON.stringify(storedInformation));
+
+};
   
 
 function showFeedBack (event) {
@@ -169,11 +160,12 @@ function showFeedBack (event) {
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-
+    var playerInformations = (localStorage.getItem("ScoresArray"));
+    scoreList.textContent = playerInformations;
     // var initial = localStorage.getItem("store-initial");
     // var score = localStorage.getItem("store-final-score");
-    // scoreList.textContent = initial + " - " + score;
-    storeObjects();
+    
+   
     goBack.addEventListener("click", showStartScreen);
     clearScore.addEventListener("click", alertScore);
 
