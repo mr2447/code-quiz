@@ -12,7 +12,8 @@ var feedBack = document.querySelector("#feedback");
 var form = document.querySelector("#task-form");
 var goBack = document.querySelector("#go-back-btn");
 var clearScore = document.querySelector("#clear-score-btn");
-
+var finalScore = document.querySelector("#final-score");
+var initialInput = document.querySelector("#initial");
 
 //start game with a score: time of 24
 var time = 50;
@@ -79,6 +80,7 @@ function showChoices () {
 };
 
 function verifyResponse (event) {
+    
     //store chosenChoice
     event.target.innerHTML
     var chosenChoice = event.target.innerHTML;
@@ -87,7 +89,7 @@ function verifyResponse (event) {
         console.log("correct!")
     } else {
         console.log("wrong!");
-        
+        time-=10;
     }
  
     //dispaly
@@ -108,6 +110,7 @@ function verifyResponse (event) {
 //function to stop timer
 function endQuiz () {
     clearInterval(intervalId);
+    console.log(time);
 }
 
 function startTimer () {
@@ -115,9 +118,9 @@ function startTimer () {
         time --;
         timer.textContent = time;
         console.log(time);
-        
         if (time <= 0) {
         endQuiz();
+        minusTime();
         }  
     },1000);
 };
@@ -126,16 +129,31 @@ function startTimer () {
 function showEndScreen () {
     questionsScreen.setAttribute("class", "hide");
     endScreen.removeAttribute("class", "hide");
-    form.addEventListener("submit", showFeedBack);
+    
+    finalScore.innerHTML = time;
+    localStorage.setItem("store-final-score", time);
+    
+};
+form.addEventListener("submit", function (event) {
+    event.preventDefault()
+    saveInitial();
+    showFeedBack();
+});
 
+function saveInitial (event) {
+    event.preventDefault();
+    var storeInitial = initial.value;
+    localStorage.setItem("store-inital", storeInitial);
 };
 
 function showFeedBack (event) {
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
+    //finalScore.
     goBack.addEventListener("click", showStartScreen);
-    clearScore.addEventListener("click", alertScore)
+    clearScore.addEventListener("click", alertScore);
+
 };
 
 function showStartScreen () {
