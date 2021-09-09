@@ -160,16 +160,22 @@ function showFeedBack (event) {
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-    var playerInformations = (localStorage.getItem("ScoresArray"));
-    scoreList.textContent = playerInformations;
-    // var initial = localStorage.getItem("store-initial");
-    // var score = localStorage.getItem("store-final-score");
-    
+    //var playerInformations = JASON.parse(localStorage.getItem("ScoresArray"));
+    var initial = storedInformation[0].initials;
+    var time = storedInformation[0]. score;
+   scoreList.textContent = initial + " - " + time;
    
-    goBack.addEventListener("click", showStartScreen);
+    goBack.addEventListener("click", playAgain);
     clearScore.addEventListener("click", alertScore);
 
 };
+
+function playAgain () {
+
+    showStartScreen();
+    console.log(quizQuestion[questionIndex])
+
+}
 
 function showStartScreen () {
     feedBack.setAttribute("class", "hide");
