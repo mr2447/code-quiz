@@ -38,6 +38,11 @@ var quizQuestion = [
         answer: "8",
     }
 ];
+
+var storedInformation = [];
+
+
+
 //cycle through the questions starting at 0
 var questionIndex = 0
 var choicesIndex = 0
@@ -134,9 +139,9 @@ function showEndScreen () {
     finalScore.innerHTML = time;
     var checkScore = localStorage.getItem("store-final-score")
     
-    if (checkScore < time || checkScore === null) {
-        localStorage.setItem("store-final-score", time);
-    } 
+    // if (checkScore < time || checkScore === null) {
+    //     localStorage.setItem("store-final-score", time);
+    // } 
 };
 form.addEventListener("submit", function (event) {
     saveInitial(event);
@@ -145,20 +150,30 @@ form.addEventListener("submit", function (event) {
 
 function saveInitial (event) {
     event.preventDefault();
-    var storeInitial = initial.value;
-    localStorage.setItem("store-initial", storeInitial);
-    console.log(storeInitial)
+    localStorage.setItem("store-objects", storeObjects[0]);
+    
 };
+
+for (var i = 0; i < storedInformation.length; i++  ) {
+var storeObjects = [
+    {
+        time : time,
+        initial: initial.value,
+    }
+];
+}
+  
 
 function showFeedBack (event) {
     console.log("showing feedBack");
     event.preventDefault()
     endScreen.setAttribute("class", "hide");
     feedBack.removeAttribute("class", "hide");
-    var initial = localStorage.getItem("store-initial");
-    var score = localStorage.getItem("store-final-score");
-    scoreList.textContent = initial + " - " + score;
 
+    // var initial = localStorage.getItem("store-initial");
+    // var score = localStorage.getItem("store-final-score");
+    // scoreList.textContent = initial + " - " + score;
+    storeObjects();
     goBack.addEventListener("click", showStartScreen);
     clearScore.addEventListener("click", alertScore);
 
